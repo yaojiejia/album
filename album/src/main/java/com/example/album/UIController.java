@@ -47,6 +47,9 @@ public class UIController {
             System.out.println(e);
         }
     }
+    public void viewSongs(){
+
+    }
 
 
 }
