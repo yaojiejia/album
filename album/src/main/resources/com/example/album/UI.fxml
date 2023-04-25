@@ -24,6 +24,6 @@
       <TextField fx:id="artistis_field" layoutX="332.0" layoutY="133.0" />
       <TextField fx:id="length_field" layoutX="332.0" layoutY="200.0" />
       <Button fx:id="add_button" layoutX="238.0" layoutY="275.0" mnemonicParsing="false" onAction="#addSong" prefHeight="36.0" prefWidth="94.0" text="Add!" />
-      <Button fx:id="view_button" layoutX="379.0" layoutY="275.0" mnemonicParsing="false" onAction="#viewSongs" prefHeight="36.0" prefWidth="94.0" text="View Songs" />
+      <Button fx:id="switchtodisplay" layoutX="379.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToDisplay" prefHeight="36.0" prefWidth="128.0" text="Go to your song" />
    </children>
 </AnchorPane>
