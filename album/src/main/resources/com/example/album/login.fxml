@@ -17,9 +17,9 @@
             <Font name="DejaVu Sans Mono Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="352.0" layoutY="188.0" />
-      <TextField layoutX="352.0" layoutY="244.0" />
-      <Button layoutX="322.0" layoutY="321.0" mnemonicParsing="false" text="Login!" />
+      <TextField fx:id="loginusername" layoutX="352.0" layoutY="188.0" />
+      <TextField fx:id="loginpassword" layoutX="352.0" layoutY="244.0" />
+      <Button layoutX="322.0" layoutY="321.0" mnemonicParsing="false" onAction="#login" text="Login!" />
       <Button fx:id="singup_button" layoutX="445.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchtoSignup" text="Signup!" />
    </children>
 </AnchorPane>

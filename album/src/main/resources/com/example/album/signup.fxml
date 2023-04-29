@@ -20,9 +20,9 @@
             <Font name="DejaVu Sans Mono Bold" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="270.0" layoutY="154.0" />
-      <TextField layoutX="270.0" layoutY="214.0" />
-      <Button layoutX="239.0" layoutY="277.0" mnemonicParsing="false" text="Signup!" />
+      <TextField fx:id="signupusername" layoutX="270.0" layoutY="154.0" />
+      <TextField fx:id="signuppassword" layoutX="270.0" layoutY="214.0" />
+      <Button layoutX="239.0" layoutY="277.0" mnemonicParsing="false" onAction="#clickToSignup" text="Signup!" />
       <Button fx:id="backtologin_button" layoutX="379.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToLogin" text="Go back to login" />
    </children>
 </AnchorPane>
