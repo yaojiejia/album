@@ -37,6 +37,7 @@ public class UIController {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
+
             Connection connection = DriverManager.getConnection(url, username, password);
 
             Statement statement = connection.createStatement();
