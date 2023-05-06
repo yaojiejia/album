@@ -10,8 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
-
+import java.util.ResourceBundle;
 
 
 public class UIController {
@@ -23,7 +24,9 @@ public class UIController {
     @FXML
     private TextField length_field;
 
+
     private String Username;
+    DataConnection data = DataConnection.getInstance();
 
     private Stage stage;
     private Scene scene;
@@ -33,9 +36,7 @@ public class UIController {
 
     }
 
-    public void setUsername(String u){
-        Username = u;
-    }
+
 
 
     @FXML
@@ -44,6 +45,7 @@ public class UIController {
         String username = "root";
         String password = "jiayaojie0715";
         try{
+            this.Username = data.getUsername();
             Class.forName("com.mysql.cj.jdbc.Driver");
 
 
@@ -80,7 +82,13 @@ public class UIController {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void switchToLogin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 }

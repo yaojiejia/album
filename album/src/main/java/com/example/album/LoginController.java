@@ -21,6 +21,7 @@ public class LoginController {
     private TextField loginpassword;
     @FXML
     private Label loginstatus;
+    DataConnection data = DataConnection.getInstance();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -62,10 +63,7 @@ public class LoginController {
                 while(pass.next()){
                     String temp = pass.getString(1);
                     if(temp.equals(loginpassword.getText())){
-                        UIController viewSong = new UIController();
-                        viewSong.setUsername(loginusername.getText());
-                        DisplayController addSong = new DisplayController();
-                        addSong.setUsername(loginusername.getText());
+                        data.setUsername(loginusername.getText());
                         loginstatus.setText("success!");
                         Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
                         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
