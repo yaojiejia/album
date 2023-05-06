@@ -24,5 +24,6 @@
       <TextField fx:id="signuppassword" layoutX="270.0" layoutY="214.0" />
       <Button layoutX="239.0" layoutY="277.0" mnemonicParsing="false" onAction="#clickToSignup" text="Signup!" />
       <Button fx:id="backtologin_button" layoutX="379.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToLogin" text="Go back to login" />
+      <Label fx:id="signupstatus" layoutX="270.0" layoutY="104.0" prefHeight="24.0" prefWidth="105.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

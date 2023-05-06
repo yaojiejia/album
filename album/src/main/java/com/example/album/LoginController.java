@@ -5,10 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import com.example.album.DisplayController;
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.*;
 
@@ -17,6 +19,8 @@ public class LoginController {
     private TextField loginusername;
     @FXML
     private TextField loginpassword;
+    @FXML
+    private Label loginstatus;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -29,7 +33,7 @@ public class LoginController {
     }
 
     @FXML
-    public void login(){
+    public void login(ActionEvent event) throws IOException{
         String url = "jdbc:mysql://localhost:3306/myDB";
         String username = "root";
         String password = "jiayaojie0715";
@@ -49,11 +53,32 @@ public class LoginController {
                     verified = loginusername.getText();
                 }
             }
-
             if(verified.equals(loginusername.getText())) {
                 String sql = "SELECT password FROM users WHERE user_name = ?";
                 PreparedStatement preparedStmt = connection.prepareStatement(sql);
                 preparedStmt.setString(1, loginusername.getText());
+                ResultSet pass = preparedStmt.executeQuery();
+
+                while(pass.next()){
+                    String temp = pass.getString(1);
+                    if(temp.equals(loginpassword.getText())){
+                        UIController viewSong = new UIController();
+                        viewSong.setUsername(loginusername.getText());
+                        DisplayController addSong = new DisplayController();
+                        addSong.setUsername(loginusername.getText());
+                        loginstatus.setText("success!");
+                        Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
+                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+
+                    }
+                    else{
+                        loginstatus.setText("Wrong Credentials!");
+                    }
+                }
 
 
             }
@@ -65,9 +90,7 @@ public class LoginController {
 
     }
 
-    public void goToUI(String u, String p){
 
-    }
 
 
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,6 +18,8 @@ public class SignupController {
     private TextField signupusername;
     @FXML
     private TextField signuppassword;
+    @FXML
+    private Label signupstatus;
 
     private Stage stage;
     private Scene scene;
@@ -35,6 +38,7 @@ public class SignupController {
         String password = "jiayaojie0715";
 
         try{
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
 
@@ -44,12 +48,12 @@ public class SignupController {
             String sql = " insert into users (id, user_name, password)"
                     + " values (?, ?, ?)";
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
-            preparedStmt.setInt (1, (int)((Math.random()*(100-0))+0));
+            preparedStmt.setInt (1, (int)((Math.random()*(1000-0))+0));
 
             preparedStmt.setString (2, signupusername.getText());
             preparedStmt.setString   (3, signuppassword.getText());
             preparedStmt.execute();
-
+            signupstatus.setText("Success!");
 
 
             connection.close();

@@ -6,8 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,6 +15,7 @@ import java.sql.*;
 
 
 public class UIController {
+//    private final Connector con;
     @FXML
     private TextField song_field;
     @FXML
@@ -24,9 +23,19 @@ public class UIController {
     @FXML
     private TextField length_field;
 
+    private String Username;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    public UIController() {
+
+    }
+
+    public void setUsername(String u){
+        Username = u;
+    }
 
 
     @FXML
@@ -42,12 +51,13 @@ public class UIController {
 
             Statement statement = connection.createStatement();
 
-            String sql = " insert into Song (SongName, Artist, LengthSeconds)"
-                    + " values (?, ?, ?)";
+            String sql = " insert into Song (username, SongName, Artist, LengthSeconds)"
+                    + " values (?,?, ?, ?)";
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
-            preparedStmt.setString (1, song_field.getText());
-            preparedStmt.setString (2, artistis_field.getText());
-            preparedStmt.setString   (3, length_field.getText());
+            preparedStmt.setString (1, this.Username);
+            preparedStmt.setString (2, song_field.getText());
+            preparedStmt.setString (3, artistis_field.getText());
+            preparedStmt.setString   (4, length_field.getText());
             preparedStmt.execute();
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Song");

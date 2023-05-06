@@ -10,10 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DisplayController {
     @FXML
@@ -21,7 +18,13 @@ public class DisplayController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    public String Username;
+    public DisplayController(){
 
+    }
+    public void setUsername(String u){
+        Username = u;
+    }
     public void switchToUI(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("UI.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -29,6 +32,7 @@ public class DisplayController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void display() {
         String url = "jdbc:mysql://localhost:3306/myDB";
@@ -40,12 +44,14 @@ public class DisplayController {
 
             Connection connection = DriverManager.getConnection(url, username, password);
 
-            Statement statement = connection.createStatement();
+            String sql = "SELECT SongName, Artist FROM users WHERE user_name = ?";
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.setString(1, Username);
+            ResultSet pass = preparedStmt.executeQuery();
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Song");
-            while(resultSet.next()){
-                display_area.appendText(resultSet.getString(1) + " " + resultSet.getString(2 )+ " " + resultSet.getString(3 )+  System.lineSeparator());
-            }
+//            while(pass.next()){
+//                display_area.appendText(resultSet.getString(1) + " " + resultSet.getString(2 )+ " " + resultSet.getString(3 )+  System.lineSeparator());
+//            }
 
             connection.close();
         }

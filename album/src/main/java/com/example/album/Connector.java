@@ -10,7 +10,7 @@ public class Connector {
     final String USERNAME = "root";
     final String PASSWORD = "jiayaojie0715";
 
-    public void add() {
+    public void getDatabaseConnection() {
         try {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException se) {
